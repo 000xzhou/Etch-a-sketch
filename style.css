@@ -1,0 +1,19 @@
+html {
+    background: pink;
+}
+section {
+
+    display: grid;
+    /* flex-wrap: wrap; */
+    grid-template-columns: repeat(var(--width), 50px);
+    grid-template-rows: repeat(var(--height), 50px);
+}
+
+div {
+    background: green;
+
+}
+/* div:hover {
+    worked in js but... i want tiles to be different color from each other
+    background: var(--random, rgb(255, 165, 0))
+} */
