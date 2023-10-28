@@ -27,7 +27,7 @@ function sketch(width, height) {
         const div = document.createElement("div")
         squareTiles.appendChild(div)
     }
-    hover()
+    lighten()
     gridStyle(width, height)
 }
 
@@ -47,7 +47,6 @@ function hover() {
     let divColor = e.target.closest('div');
     if (!divColor) { return; }
         divColor.style.backgroundColor = `rgb(${random()}, ${random()}, ${random()})`;
-        
     });
     
     document.body.addEventListener('mouseout', e => {
@@ -58,24 +57,70 @@ function hover() {
 
 }
 
+// add darken
+function darken() {
+    let dark = 1
+    document.body.addEventListener('mouseover', e => {
+        let divColor = e.target.closest('div');
+        if (!divColor) { return; }
+            divColor.style.backgroundColor = `rgb(${random()}, ${random()}, ${random()}, ${dark})`
+            if(dark >= 0) {
+                dark -= 0.1
+            }
+        });
+        
+        document.body.addEventListener('mouseout', e => {
+        let divColor = e.target.closest('div');
+        if (!divColor) { return; }
+            divColor.style.backgroundColor = '';
+        });
+}
+// add lighten
+function lighten() {
+    let light = 0
+    document.body.addEventListener('mouseover', e => {
+        let divColor = e.target.closest('div');
+        if (!divColor) { return; }
+            divColor.style.backgroundColor = `rgb(${random()}, ${random()}, ${random()}, ${light})`
+            if(light <= 1) {
+                light += 0.1
+            }
+        });
+        
+        document.body.addEventListener('mouseout', e => {
+        let divColor = e.target.closest('div');
+        if (!divColor) { return; }
+            divColor.style.backgroundColor = '';
+        });
+}
 // get rbg num
 function random() {
     return Math.floor(Math.random()* 256)
 }
+    const h1 = document.createElement("h1")
+    main.appendChild(h1)
 
 // get user input
 function getUserNum() {
-    // TODO: add error checking. aka if it's not a num or neg num. can be in a different function
     btn.addEventListener("click", ()=> {
         //get user num
-        let width = input_one.value
-        let height = input_two.value
-        //delete grid
-        squareTiles.innerHTML=""
-        //create grid
-        sketch(width, height)
+        let width = parseInt(input_one.value)
+        let height = parseInt(input_two.value)
+        // error checking
+        if(Number.isFinite(width) || Number.isFinite(height)) {
+            if(width > 0 && width <= 100 && height > 0 && height <= 100) {
+                //delete grid
+                squareTiles.innerHTML=""
+                h1.innerText = ""
+                //create grid
+                sketch(width, height)
+            } else {
+                h1.innerText = "Number is invalid"
+            }
+        }
     })
 }
+
 
 // default grid
 sketch(10,10)

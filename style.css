@@ -1,8 +1,9 @@
 html {
-    background: pink;
+    background: black;
+    color: snow;
 }
 section {
-
+    padding-top: 3rem;
     display: grid;
     /* flex-wrap: wrap; */
     grid-template-columns: repeat(var(--width), 50px);
@@ -10,10 +11,17 @@ section {
 }
 
 div {
-    background: green;
-
+    background: snow;
+    border: 1px solid grey;
 }
 /* div:hover {
     worked in js but... i want tiles to be different color from each other
     background: var(--random, rgb(255, 165, 0))
 } */
+
+h1 {
+    color: red;
+    display:block;
+    position:absolute;
+    top: 1rem;
+}
